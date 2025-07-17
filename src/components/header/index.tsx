@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { GlassCard } from "react-glass-ui";
 import { PatchNotesData } from "../../constants";
+import Logo from "/react-glass-ui-logo.webp";
 import "./header.scss";
 
 export const Header: React.FunctionComponent = () => {
@@ -26,9 +27,10 @@ export const Header: React.FunctionComponent = () => {
       >
         <div className="w-100 header_items d-flex align-items-center justify-content-between">
           <div
-            className="cursor_pointer"
+            className="d-flex align-items-center cursor_pointer"
             onClick={() => handleNavigation("landing-page")}
           >
+            <img className="logo_image mr-2" src={Logo} />
             React Glass UI - {PatchNotesData.releaseVersion}
           </div>
           <div className="menu_items">

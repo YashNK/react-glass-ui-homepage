@@ -35,6 +35,10 @@
       .menu_items {
         display: block;
       }
+      .logo_image {
+        max-width: 25px;
+        max-height: 25px;
+      }
       @media screen and (max-width: 850px) {
         .menu_items {
           display: none;

@@ -8,7 +8,7 @@ export type PageNotesType = {
 };
 
 export const PatchNotesData: PageNotesType = {
-  releaseVersion: "v1.1.1",
+  releaseVersion: "v1.2.1",
   releaseDate: "18th July 2025",
   releaseNotes: [
     {
