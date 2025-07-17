@@ -1,0 +1,106 @@
+.installation_section {
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-color: var(--themeColor);
+  padding: var(--headerHeight) var(--sectionPadding);
+  .installation_content {
+    z-index: 4;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .installation_intro {
+      margin-bottom: 30px;
+      .installation_title {
+        font-size: clamp(1.5rem, 2.8vw, 3rem);
+        margin-bottom: 10px;
+      }
+      .installation_description {
+        font-size: 1rem;
+        color: var(--textColor);
+        opacity: 0.9;
+        line-height: 1.6;
+        margin: 0 auto;
+      }
+    }
+    .installation_steps {
+      .installation_subtext {
+        font-size: 1rem;
+        color: var(--textColor);
+        margin-bottom: 12px;
+        code {
+          color: #c71ca2;
+          font-weight: 600;
+        }
+      }
+      .code_block {
+        background-color: var(--black);
+        padding: 10px 16px;
+        border-radius: 8px;
+        gap: 12px;
+        font-family: monospace;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+        code {
+          font-weight: 600;
+          color: #e199d1;
+          white-space: nowrap;
+        }
+        .copy_btn {
+          background-color: var(--themeColor);
+          border: none;
+          color: var(--textColor);
+          padding: 6px 12px;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: all 0.2s ease-in-out;
+          font-size: 0.85rem;
+          &:hover {
+            background-color: #aa4498;
+            color: var(--white);
+          }
+        }
+      }
+      .installation_meta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        margin-top: 10px;
+        .npm_link img {
+          height: 24px;
+        }
+        .npm_info {
+          color: var(--textColor);
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 850px) {
+    .installation_content {
+      flex-direction: column;
+      .installation_description {
+        max-width: 100%;
+      }
+      .installation_steps {
+        width: 100%;
+      }
+      .code_block {
+        > code {
+          font-size: clamp(0.6rem, 1.2vw, 2rem);
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        flex-wrap: wrap;
+      }
+    }
+  }
+}

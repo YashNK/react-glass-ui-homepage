@@ -1,0 +1,24 @@
+export type GlassFilterSettings = {
+  blur: number;
+  distortion: number;
+  flexibility: number;
+  borderColor: string;
+  borderSize: number;
+  borderRadius: number;
+  borderOpacity: number;
+  backgroundColor: string;
+  backgroundOpacity: number;
+  innerLightColor: string;
+  innerLightSpread: number;
+  innerLightBlur: number;
+  innerLightOpacity: number;
+  outerLightColor: string;
+  outerLightSpread: number;
+  outerLightBlur: number;
+  outerLightOpacity: number;
+  color: string;
+  chromaticAberration: number;
+  onHoverScale: number;
+  saturation: number;
+  brightness: number;
+};

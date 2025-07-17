@@ -1,0 +1,63 @@
+.patch_notes_section {
+  width: 100%;
+  padding: var(--headerHeight) var(--sectionPadding);
+  background-color: var(--themeColor);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  .patch_notes_header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    .patch_notes_title {
+      color: #79ceff;
+      font-size: clamp(1.4rem, 2vw, 2.5rem);
+      font-weight: bold;
+    }
+    .patch_notes_date {
+      font-size: clamp(0.8rem, 1vw, 1rem);
+      color: #ff00d9;
+      margin-top: 4px;
+    }
+    @media screen and (max-width: 850px) {
+      flex-direction: column;
+    }
+  }
+  .patch_notes_scroll_container {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+  }
+  .patch_card {
+    max-width: 100%;
+    margin-right: 20px;
+    flex: 0 0 auto;
+    width: 800px;
+    background-color: rgba(0, 179, 255, 0.06);
+    border-radius: 12px;
+    padding: 20px;
+    scroll-snap-align: start;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    .release_title {
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+    .patch_note_list {
+      padding-left: 1.2rem;
+      overflow: auto;
+      .patch_note_point {
+        margin-bottom: 6px;
+        line-height: 1.5;
+        white-space: pre-line;
+      }
+    }
+  }
+  @media screen and (max-width: 850px) {
+    .patch_card {
+      width: 100% !important;
+    }
+  }
+}

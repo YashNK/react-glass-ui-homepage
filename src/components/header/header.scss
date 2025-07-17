@@ -1,0 +1,45 @@
+.header_container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 10px 0px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(0);
+  transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  padding-left: var(--sectionPadding);
+  padding-right: var(--sectionPadding);
+  .header_glass_content_container {
+    width: 0;
+    padding: 5px 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: expandWidth 0.8s ease-out forwards;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    .header_glass_content {
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-out forwards;
+      animation-delay: 0.5s;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      &.header_fade_out {
+        animation: fadeOut 0.25s ease;
+      }
+      .header_items {
+        opacity: 1;
+        transition: opacity 0.6s ease;
+      }
+      .menu_items {
+        display: block;
+      }
+      @media screen and (max-width: 850px) {
+        .menu_items {
+          display: none;
+        }
+      }
+    }
+  }
+}
