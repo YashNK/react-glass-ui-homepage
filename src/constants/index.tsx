@@ -8,37 +8,21 @@ export type PageNotesType = {
 };
 
 export const PatchNotesData: PageNotesType = {
-  releaseVersion: "v1.1.0",
+  releaseVersion: "v1.1.1",
   releaseDate: "18th July 2025",
   releaseNotes: [
     {
-      patchTitle: "Component-Specific Enhancements",
+      patchTitle: "Visual Tweaks",
       patchPoints: [
-        "GlassInput: Now supports fully custom range UI using div-based tracks/thumbs.",
-      ],
-    },
-    {
-      patchTitle: "Styling & SCSS Structure",
-      patchPoints: [
-        "Glass component styles now more consistent across {height}, {padding}, {border} props.",
-        "Reduced use of {!important} for easier override by users.",
-      ],
-    },
-    {
-      patchTitle: "Visual Effects & Filters",
-      patchPoints: [
-        "Added chromatic aberration distortion layer (optional via future prop).",
-        "Improved distortion maps with better surface variation.",
-        "Reduced white borders on `blur()` by isolating background filter layers.",
-      ],
-    },
-    {
-      patchTitle: "Performance Improvements",
-      patchPoints: [
-        "SVG filters now reused via {id} and {useMemo} — prevents duplicate DOM nodes.",
-        "{renderLayers()} optimized to skip regeneration of identical SVGs.",
-        "Avoided rendering filters when {avoidSVGCreation} is enabled.",
-        "Minimized reflows by separating visual filter logic from state updates.",
+        "Default {blur} increased: {1} → {2} for smoother background blending.",
+        "Distortion strength reduced: {50} → {20} for subtler displacement.",
+        "Saturation boosted: {100} → {120} for more vivid glass coloration.",
+        "Border radius rounded: {8px} → {10px} for a modern UI curve.",
+        "Base {opacity} increased: {0.2} → {0} for improved contrast.",
+        "Light blur layer reduced: {20} → {10} for a crisper glow.",
+        "Padding standardized: {10px 20px} → {10px} for better alignment.",
+        "Improved range track glow and thumb color clarity.",
+        "Color input fields now show correct pointer cursor and no border.",
       ],
     },
     {
@@ -62,17 +46,33 @@ export const PatchNotesData: PageNotesType = {
       ],
     },
     {
-      patchTitle: "Visual Tweaks",
+      patchTitle: "Performance Improvements",
       patchPoints: [
-        "Default {blur} increased: {1} → {2} for smoother background blending.",
-        "Distortion strength reduced: {50} → {20} for subtler displacement.",
-        "Saturation boosted: {100} → {120} for more vivid glass coloration.",
-        "Border radius rounded: {8px} → {10px} for a modern UI curve.",
-        "Base {opacity} increased: {0.2} → {0} for improved contrast.",
-        "Light blur layer reduced: {20} → {10} for a crisper glow.",
-        "Padding standardized: {10px 20px} → {10px} for better alignment.",
-        "Improved range track glow and thumb color clarity.",
-        "Color input fields now show correct pointer cursor and no border.",
+        "SVG filters now reused via {id} and {useMemo} — prevents duplicate DOM nodes.",
+        "{renderLayers()} optimized to skip regeneration of identical SVGs.",
+        "Avoided rendering filters when {avoidSVGCreation} is enabled.",
+        "Minimized reflows by separating visual filter logic from state updates.",
+      ],
+    },
+    {
+      patchTitle: "Visual Effects & Filters",
+      patchPoints: [
+        "Added chromatic aberration distortion layer (optional via future prop).",
+        "Improved distortion maps with better surface variation.",
+        "Reduced white borders on `blur()` by isolating background filter layers.",
+      ],
+    },
+    {
+      patchTitle: "Styling & SCSS Structure",
+      patchPoints: [
+        "Glass component styles now more consistent across {height}, {padding}, {border} props.",
+        "Reduced use of {!important} for easier override by users.",
+      ],
+    },
+    {
+      patchTitle: "Component-Specific Enhancements",
+      patchPoints: [
+        "GlassInput: Now supports fully custom range UI using div-based tracks/thumbs.",
       ],
     },
   ],
