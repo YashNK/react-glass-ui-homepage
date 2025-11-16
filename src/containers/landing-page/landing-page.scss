@@ -3,6 +3,7 @@
   height: 100%;
   position: relative;
   overflow-y: auto;
+  scroll-behavior: smooth;
   overflow-x: hidden;
   background-color: var(--themeColor);
   .btn_glass_content_container {
@@ -21,6 +22,7 @@
     width: 100%;
   }
   .landing_section {
+    position: fixed;
     color: var(--white);
     pointer-events: none;
     z-index: 0;
@@ -32,7 +34,6 @@
     justify-content: center;
     text-align: center;
     padding: var(--headerHeight) var(--sectionPadding);
-    position: fixed;
     top: 0;
     left: 0;
     .landing_page_title {

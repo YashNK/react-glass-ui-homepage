@@ -1,0 +1,16 @@
+.input_demo_section {
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+  .input_demo_section_image_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .background_image {
+      max-height: 800px;
+      object-position: center;
+    }
+  }
+}

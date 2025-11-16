@@ -1,0 +1,73 @@
+@font-face {
+  font-family: "regular";
+  src: url("./fonts/PublicSans-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "black";
+  src: url("./fonts/PublicSans-Black.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "bold";
+  src: url("./fonts/PublicSans-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "light";
+  src: url("./fonts/PublicSans-Light.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "medium";
+  src: url("./fonts/PublicSans-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "thin";
+  src: url("./fonts/PublicSans-Thin.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  body {
+    font-size: 14px;
+    font-family: "regular";
+    .font_12 {
+      font-size: 12px;
+    }
+    .font_11 {
+      font-size: 11px;
+    }
+    .font-16 {
+      font-size: 16px;
+    }
+    .font_20 {
+      font-size: 20px;
+    }
+    .font_weight_bold {
+      font-family: "bold";
+    }
+    .font_weight_black {
+      font-family: "black";
+    }
+    .font_weight_medium {
+      font-family: "medium";
+    }
+    .font_weight_thin {
+      font-family: "thin";
+    }
+    .font_weight_regular {
+      font-family: "regular";
+    }
+    .font_weight_light {
+      font-family: "light";
+    }
+  }
+}

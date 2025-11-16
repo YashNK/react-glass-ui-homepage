@@ -1,24 +1,213 @@
 import React, { useState } from "react";
 import { defaultFilters, tabLabels } from "../../constants";
-import { GlassFilterSettings } from "../../models/demo-card.model";
-import { GlassInput } from "react-glass-ui";
+import { resetFilters, updateFilter } from "../../slice/demo";
+import {
+  GlassFilterSettings,
+  ProfileDetails,
+} from "../../models/demo-card.model";
+import { BackgroundFilters } from "../background-filters";
+import { OuterLightFilters } from "../outer-light-filters";
+import { InnerLightFilters } from "../inner-light-filters";
+import { CodeBlockSection } from "../code-block-section";
+import { useAppDispatch } from "../../hooks";
+import { BorderFilters } from "../border-settings";
+import { ExtraFilters } from "../extra-features";
+import { CoreFeatures } from "../core-features";
+import { GlassCard, GlassInput } from "react-glass-ui";
 import { DemoCard } from "../demo-card";
-import DemoImage from "/images/demo.webp";
+import DemoImage from "/images/input-demo-bg.webp";
 import "./demo.scss";
 
 export const Demo: React.FunctionComponent = () => {
+  const dispatch = useAppDispatch();
   const [filters, setFilters] = useState<GlassFilterSettings>(defaultFilters);
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState<number>(0);
+  const [backgroundOpacity, setBackgroundOpacity] = useState<number>(0.9);
+  const [profileDetails, setProfileDetails] = useState<ProfileDetails>({
+    username: "Emma Finn",
+    role: "Software Engineer",
+  });
+
+  const handleResetFilters = () => {
+    setFilters(defaultFilters);
+    dispatch(resetFilters());
+  };
+
+  const updateFilterState = (
+    key: keyof GlassFilterSettings,
+    value: number | string
+  ) => {
+    setFilters({ ...filters, [key]: value });
+    dispatch(updateFilter({ key, value }));
+  };
+
+  const updateProfileDetails = (key: string, value: string) => {
+    setProfileDetails((prev) => ({ ...prev, [key]: value }));
+  };
 
   return (
     <div id="demo-section" className="demo_section">
       <div className="image_container demo_section_image_container">
-        <img src={DemoImage} className="background_image" />
+        <img
+          style={{ opacity: backgroundOpacity }}
+          src={DemoImage}
+          className="background_image"
+        />
       </div>
+      <div className="demo_card_label">Glass Card</div>
       <div className="demo_content">
-        <div className="demo_card_container w-100">
-          <DemoCard filters={filters} />
-          <div className="main_tab_container mt-3">
+        <div className="demo_card_container flex_1_1_10 w-100">
+          <GlassCard
+            distortion={50}
+            className="demo_card_desc"
+            backgroundOpacity={0.2}
+            borderRadius={20}
+            backgroundColor="#d642cc"
+          >
+            A highly customizable glass-effect container that uses advanced SVG
+            filters and distortion maps to create realistic frosted glass
+            visuals
+          </GlassCard>
+          <DemoCard
+            filters={filters}
+            profileDetails={profileDetails}
+            updateProfileDetails={updateProfileDetails}
+          />
+          <div className="demo_input_section">
+            <div className="d-flex">
+              <GlassInput
+                value={profileDetails.username}
+                borderRadius={20}
+                maxLength={50}
+                onChange={(e) =>
+                  updateProfileDetails("username", e.target.value)
+                }
+                label="Username"
+                className="mr-2 flex_1_1_10"
+              />
+              <GlassInput
+                value={profileDetails.role}
+                borderRadius={20}
+                maxLength={50}
+                onChange={(e) => updateProfileDetails("role", e.target.value)}
+                label="Role"
+                className="ml-2 flex_1_1_10"
+              />
+            </div>
+          </div>
+          <GlassInput
+            distortion={0}
+            step={0.01}
+            onChange={(e) => setBackgroundOpacity(+e.target.value)}
+            value={backgroundOpacity}
+            min={0.1}
+            max={1}
+            className="demo_background_input_container"
+            label="Background image opacity"
+            type="range"
+          />
+          <GlassCard
+            blur={5}
+            distortion={0}
+            className="demo_card_desc warning font_12"
+            contentClassName="d-flex"
+            backgroundOpacity={0.1}
+            borderRadius={20}
+            backgroundColor="#d642cc"
+          >
+            <div className="pr-2">⚠️</div>
+            <div>
+              You may experience slight lag depending on your device’s
+              performance. This occurs when over 20 Glass UI elements are being
+              rendered simultaneously. For a smoother browsing experience, it’s
+              recommended to keep around 8 elements visible at a time.
+            </div>
+          </GlassCard>
+          <GlassCard
+            blur={5}
+            distortion={0}
+            className="demo_card_desc warning w-100"
+            contentClassName="d-flex font_12"
+            backgroundOpacity={0.1}
+            borderRadius={20}
+            backgroundColor="#d642cc"
+          >
+            <div className="pr-2">⚠️</div>
+            <div>
+              This library offers limited support across all modern browsers,
+              but is optimized for Chrome for the best visual quality and
+              performance.
+            </div>
+          </GlassCard>
+          {/* <GlassCard
+            blur={5}
+            distortion={0}
+            className="demo_card_desc h-100 w-100"
+            contentClassName="d-flex"
+            backgroundOpacity={0.1}
+            borderRadius={20}
+            backgroundColor="#d642cc"
+          >
+            <div>
+              <img className="logo_image mr-2" src={Logo} />
+            </div>
+            <div>
+              React Glass UI - {PatchNotesData.releaseVersion}
+              <div>
+                A customizable React component library for creating elegant
+                glassmorphism interfaces. It provides flexible, interactive UI
+                elements, such as cards, buttons, and inputs, with effects
+                including blur, saturation, distortion, light glow, and hover.
+              </div>
+            </div>
+          </GlassCard> */}
+        </div>
+        <div className="demo_options_container w-100 flex_1_1_10 h-100 d-flex flex-column">
+          <GlassCard
+            blur={4}
+            distortion={50}
+            borderRadius={30}
+            contentClassName="p-4"
+            className="demo_options w-100 flex_1_1_10"
+          >
+            {activeTab === 0 && (
+              <CoreFeatures
+                filters={filters}
+                updateFilterState={updateFilterState}
+              />
+            )}
+            {activeTab === 1 && (
+              <BorderFilters
+                filters={filters}
+                updateFilterState={updateFilterState}
+              />
+            )}
+            {activeTab === 2 && (
+              <BackgroundFilters
+                filters={filters}
+                updateFilterState={updateFilterState}
+              />
+            )}
+            {activeTab === 3 && (
+              <InnerLightFilters
+                filters={filters}
+                updateFilterState={updateFilterState}
+              />
+            )}
+            {activeTab === 4 && (
+              <OuterLightFilters
+                filters={filters}
+                updateFilterState={updateFilterState}
+              />
+            )}
+            {activeTab === 5 && (
+              <ExtraFilters
+                filters={filters}
+                updateFilterState={updateFilterState}
+              />
+            )}
+          </GlassCard>
+          <div className="main_tab_container m-0">
             {tabLabels.map((label, index) => (
               <button
                 key={label}
@@ -28,335 +217,15 @@ export const Demo: React.FunctionComponent = () => {
                 {label}
               </button>
             ))}
-            <button
-              className="tab reset-btn"
-              onClick={() => setFilters(defaultFilters)}
-            >
+            <button className="tab reset-btn" onClick={handleResetFilters}>
               Reset All
             </button>
           </div>
-        </div>
-        <div className="demo_options_container w-100 h-100">
-          <div className="demo_options p-4">
-            {activeTab === 0 && (
-              <>
-                <GlassInput
-                  id="input-slider"
-                  label="Blur"
-                  type="range"
-                  min={0}
-                  max={50}
-                  distortion={0}
-                  backgroundColor="white"
-                  value={filters.blur}
-                  onChange={(e) =>
-                    setFilters({ ...filters, blur: +e.target.value })
-                  }
-                />
-                <GlassInput
-                  id="input-slider"
-                  label="Distortion"
-                  type="range"
-                  min={0}
-                  distortion={0}
-                  max={500}
-                  value={filters.distortion}
-                  avoidSvgCreation
-                  onChange={(e) =>
-                    setFilters({ ...filters, distortion: +e.target.value })
-                  }
-                />
-                <GlassInput
-                  id="input-slider"
-                  label="Flexibility"
-                  distortion={0}
-                  type="range"
-                  min={0}
-                  max={20}
-                  value={filters.flexibility}
-                  avoidSvgCreation
-                  onChange={(e) =>
-                    setFilters({ ...filters, flexibility: +e.target.value })
-                  }
-                />
-                <GlassInput
-                  id="input-slider"
-                  label="Saturation"
-                  type="range"
-                  min={0}
-                  distortion={0}
-                  max={300}
-                  step={1}
-                  value={filters.saturation}
-                  avoidSvgCreation
-                  onChange={(e) =>
-                    setFilters({ ...filters, saturation: +e.target.value })
-                  }
-                />
-                <GlassInput
-                  id="input-slider"
-                  label="Brightness"
-                  type="range"
-                  distortion={0}
-                  min={0}
-                  max={300}
-                  step={1}
-                  value={filters.brightness}
-                  avoidSvgCreation
-                  onChange={(e) =>
-                    setFilters({ ...filters, brightness: +e.target.value })
-                  }
-                />
-                <GlassInput
-                  id="input-slider"
-                  avoidSvgCreation
-                  label="Chromatic Aberration"
-                  distortion={0}
-                  type="range"
-                  min={0}
-                  max={20}
-                  step={0.1}
-                  value={filters.chromaticAberration}
-                  onChange={(e) =>
-                    setFilters({
-                      ...filters,
-                      chromaticAberration: +e.target.value,
-                    })
-                  }
-                />
-              </>
-            )}
-
-            {activeTab === 1 && (
-              <>
-                <GlassInput
-                  label="Border Radius"
-                  distortion={0}
-                  type="range"
-                  min={0}
-                  max={50}
-                  value={filters.borderRadius}
-                  onChange={(e) =>
-                    setFilters({ ...filters, borderRadius: +e.target.value })
-                  }
-                />
-                <GlassInput
-                  label="Border Size"
-                  type="range"
-                  distortion={0}
-                  min={0}
-                  max={10}
-                  value={filters.borderSize}
-                  onChange={(e) =>
-                    setFilters({ ...filters, borderSize: +e.target.value })
-                  }
-                />
-                <GlassInput
-                  label="Border Opacity"
-                  type="range"
-                  min={0}
-                  distortion={0}
-                  max={1}
-                  step={0.05}
-                  value={filters.borderOpacity}
-                  onChange={(e) =>
-                    setFilters({ ...filters, borderOpacity: +e.target.value })
-                  }
-                />
-                <label className="color_label">
-                  Border Color:
-                  <input
-                    className="ml-2"
-                    type="color"
-                    value={filters.borderColor}
-                    onChange={(e) =>
-                      setFilters({ ...filters, borderColor: e.target.value })
-                    }
-                  />
-                </label>
-              </>
-            )}
-
-            {activeTab === 2 && (
-              <>
-                <GlassInput
-                  label="Background Opacity"
-                  type="range"
-                  distortion={0}
-                  min={0}
-                  max={1}
-                  step={0.1}
-                  value={filters.backgroundOpacity}
-                  onChange={(e) =>
-                    setFilters({
-                      ...filters,
-                      backgroundOpacity: +e.target.value,
-                    })
-                  }
-                />
-                <label className="color_label">
-                  Background Color:
-                  <input
-                    className="ml-2"
-                    type="color"
-                    value={filters.backgroundColor}
-                    onChange={(e) =>
-                      setFilters({
-                        ...filters,
-                        backgroundColor: e.target.value,
-                      })
-                    }
-                  />
-                </label>
-              </>
-            )}
-
-            {activeTab === 3 && (
-              <>
-                <GlassInput
-                  label="Inner Light Spread"
-                  distortion={0}
-                  type="range"
-                  min={0}
-                  max={5}
-                  value={filters.innerLightSpread}
-                  onChange={(e) =>
-                    setFilters({
-                      ...filters,
-                      innerLightSpread: +e.target.value,
-                    })
-                  }
-                />
-                <GlassInput
-                  label="Inner Light Blur"
-                  type="range"
-                  min={0}
-                  max={30}
-                  value={filters.innerLightBlur}
-                  distortion={0}
-                  onChange={(e) =>
-                    setFilters({ ...filters, innerLightBlur: +e.target.value })
-                  }
-                />
-                <GlassInput
-                  label="Inner Light Opacity"
-                  type="range"
-                  min={0}
-                  max={1}
-                  step={0.05}
-                  value={filters.innerLightOpacity}
-                  distortion={0}
-                  onChange={(e) =>
-                    setFilters({
-                      ...filters,
-                      innerLightOpacity: +e.target.value,
-                    })
-                  }
-                />
-                <label className="color_label">
-                  Inner Light Color:
-                  <input
-                    className="ml-2"
-                    type="color"
-                    value={filters.innerLightColor}
-                    onChange={(e) =>
-                      setFilters({
-                        ...filters,
-                        innerLightColor: e.target.value,
-                      })
-                    }
-                  />
-                </label>
-              </>
-            )}
-
-            {activeTab === 4 && (
-              <>
-                <GlassInput
-                  label="Outer Light Spread"
-                  distortion={0}
-                  type="range"
-                  min={0}
-                  max={5}
-                  value={filters.outerLightSpread}
-                  onChange={(e) =>
-                    setFilters({
-                      ...filters,
-                      outerLightSpread: +e.target.value,
-                    })
-                  }
-                />
-                <GlassInput
-                  label="Outer Light Blur"
-                  distortion={0}
-                  type="range"
-                  min={0}
-                  max={30}
-                  value={filters.outerLightBlur}
-                  onChange={(e) =>
-                    setFilters({ ...filters, outerLightBlur: +e.target.value })
-                  }
-                />
-                <GlassInput
-                  label="Outer Light Opacity"
-                  type="range"
-                  min={0}
-                  max={1}
-                  distortion={0}
-                  step={0.05}
-                  value={filters.outerLightOpacity}
-                  onChange={(e) =>
-                    setFilters({
-                      ...filters,
-                      outerLightOpacity: +e.target.value,
-                    })
-                  }
-                />
-                <label className="color_label">
-                  Outer Light Color:
-                  <input
-                    className="ml-2"
-                    type="color"
-                    value={filters.outerLightColor}
-                    onChange={(e) =>
-                      setFilters({
-                        ...filters,
-                        outerLightColor: e.target.value,
-                      })
-                    }
-                  />
-                </label>
-              </>
-            )}
-
-            {activeTab === 5 && (
-              <>
-                <GlassInput
-                  label="Hover Scale"
-                  type="range"
-                  min={0.9}
-                  distortion={0}
-                  max={1.2}
-                  step={0.01}
-                  value={filters.onHoverScale}
-                  onChange={(e) =>
-                    setFilters({ ...filters, onHoverScale: +e.target.value })
-                  }
-                />
-                <label className="color_label">
-                  Text Color:
-                  <input
-                    className="ml-2"
-                    type="color"
-                    value={filters.color}
-                    onChange={(e) =>
-                      setFilters({ ...filters, color: e.target.value })
-                    }
-                  />
-                </label>
-              </>
-            )}
-          </div>
+          <CodeBlockSection
+            filters={filters}
+            profileDetails={profileDetails}
+            updateProfileDetails={updateProfileDetails}
+          />
         </div>
       </div>
     </div>

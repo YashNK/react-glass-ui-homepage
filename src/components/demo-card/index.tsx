@@ -1,19 +1,25 @@
-import { GlassFilterSettings } from "../../models/demo-card.model";
+import {
+  GlassFilterSettings,
+  ProfileDetails,
+} from "../../models/demo-card.model";
 import { GlassCard } from "react-glass-ui";
 import ProfileImage from "/images/profile-pic.webp";
 import "./demo-card.scss";
 
 type DemoCardProps = {
   filters: GlassFilterSettings;
+  profileDetails: ProfileDetails;
+  updateProfileDetails: (key: string, value: string) => void;
 };
 
 export const DemoCard: React.FunctionComponent<DemoCardProps> = ({
   filters,
+  profileDetails,
 }) => {
   return (
     <div className="demo_card w-100">
       <GlassCard
-        className="w-100"
+        className="w-100 demo-glass-card"
         blur={filters.blur}
         distortion={filters.distortion}
         flexibility={filters.flexibility}
@@ -37,16 +43,16 @@ export const DemoCard: React.FunctionComponent<DemoCardProps> = ({
         saturation={filters.saturation}
         brightness={filters.brightness}
       >
-        <div className="profile_card">
-          <div className="profile_image_container">
-            <img className="profile_image" src={ProfileImage} />
+        <div className="profile-card">
+          <div className="profile-image-container">
+            <img className="profile-image" src={ProfileImage} />
           </div>
-          <div className="profile_info">
-            <h2 className="profile_name">Emma Finn</h2>
-            <p className="profile_role">Software Engineer</p>
-            <div className="profile_actions">
-              <button className="btn primary mr-2">Follow</button>
-              <button className="btn">Message</button>
+          <div className="profile-info">
+            <div className="profile-name">{profileDetails.username}</div>
+            <div className="profile-role">{profileDetails.role}</div>
+            <div className="profile-actions">
+              <button className="profile-button primary">Follow</button>
+              <button className="profile-button">Message</button>
             </div>
           </div>
         </div>

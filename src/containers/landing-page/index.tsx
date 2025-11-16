@@ -12,6 +12,7 @@ export const LandingPage: React.FunctionComponent = () => {
     const scrollContainer = document.getElementById(id);
     if (scrollContainer) scrollContainer.scrollIntoView({ behavior: "smooth" });
   };
+
   return (
     <>
       <Header />
@@ -23,7 +24,7 @@ export const LandingPage: React.FunctionComponent = () => {
           <div className="landing_page_title">Welcome to</div>
           <div className="landing_page_subtitle">React Glass UI</div>
           <GlassButton
-            blur={4}
+            blur={1}
             color="var(--white)"
             contentClassName="glass_btn"
             distortion={50}
@@ -56,9 +57,6 @@ export const LandingPage: React.FunctionComponent = () => {
             <div className="footer_content">
               <div className="footer_section">
                 <h4>Contact</h4>
-                {/* <a href="mailto:yashk.marian@gmail.com">
-                  Yashk.marian@gmail.com
-                </a> */}
                 <a
                   href="https://instagram.com/yash_kamnani"
                   target="_blank"
@@ -67,7 +65,6 @@ export const LandingPage: React.FunctionComponent = () => {
                   instagram.com/yash_kamnani
                 </a>
               </div>
-
               <div className="footer_section">
                 <h4>Other Links</h4>
                 <a

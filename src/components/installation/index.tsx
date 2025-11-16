@@ -9,7 +9,10 @@ export const Installation: React.FunctionComponent = () => {
   const handleCopy = () => {
     navigator.clipboard.writeText(command).then(() => {
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      const timeoutId = setTimeout(() => {
+        setCopied(false);
+        clearTimeout(timeoutId);
+      }, 1000);
     });
   };
 
@@ -33,20 +36,17 @@ export const Installation: React.FunctionComponent = () => {
             </a>
           </p>
         </div>
-
-        <div className="installation_steps">
+        <div className="installation_steps ml-2">
           <p className="installation_subtext">
             To install <code>react-glass-ui</code>, run the command below in
             your project:
           </p>
-
           <div className="code_block">
             <code>{command}</code>
             <button onClick={handleCopy} className="copy_btn">
               {copied ? "Copied!" : "Copy"}
             </button>
           </div>
-
           <div className="installation_meta">
             {PatchNotesData.releaseVersion}
             <span className="npm_info">

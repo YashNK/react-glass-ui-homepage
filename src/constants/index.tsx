@@ -7,8 +7,8 @@ export type PageNotesType = {
   }[];
 };
 
-export const PatchNotesData: PageNotesType = {
-  releaseVersion: "v1.2.1",
+export const PatchNotesDataV1_2_1: PageNotesType = {
+  releaseVersion: `v1.2.1`,
   releaseDate: "18th July 2025",
   releaseNotes: [
     {
@@ -78,16 +78,72 @@ export const PatchNotesData: PageNotesType = {
   ],
 };
 
+export const PatchNotesData: PageNotesType = {
+  releaseVersion: "v1.2.2",
+  releaseDate: "17th November 2025",
+  releaseNotes: [
+    {
+      patchTitle: "Visual Enhancements",
+      patchPoints: [
+        "Refined displacement map rendering to improve clarity and reduce banding on high-contrast backgrounds.",
+        "Increased default distortion level from 20 to 40 to provide a more pronounced glass-like deformation.",
+        "Adjusted default border opacity from 1 to 0.2 for a cleaner, more realistic glass edge.",
+        "Improved overall lighting consistency across inner and outer glow layers.",
+        "Enhanced SVG filter precision for smoother gradients and reduced pixel jitter during animation.",
+      ],
+    },
+    {
+      patchTitle: "Bug Fixes",
+      patchPoints: [
+        "Fixed an input focus issue where certain browsers prevented typing inside `GlassInput` fields.",
+        "Resolved an input rendering glitch that caused cursor misalignment during rapid updates.",
+        "Corrected an issue where range inputs ignored step values under certain conditions.",
+        "Fixed a rare distortion-layer overflow on components with aggressive blur values.",
+        "Addressed performance warnings related to missing event cleanup in hover listeners.",
+      ],
+    },
+    {
+      patchTitle: "New Props",
+      patchPoints: [
+        "Added `inputRangeBlur` for applying dedicated blur effects to custom range sliders.",
+        "Introduced `inputRangeDistortion` to independently control distortion intensity on range thumbs.",
+        "Expanded type definitions for input-related props to improve TypeScript support.",
+        "New default values for several lighting and border properties for a more natural glass look.",
+      ],
+    },
+    {
+      patchTitle: "Touch & Interaction Improvements",
+      patchPoints: [
+        "Implemented full touch support for hover-based flexibility effects, enabling natural tilt/shift reactions on mobile.",
+        "Added touch dragging for custom range inputs with smooth finger tracking and reduced latency.",
+        "Prevented accidental page scrolling during range slider interaction for a more app-like experience.",
+        "Improved thumb expansion animation timing for consistency across touch and mouse inputs.",
+        "Unified event handling between mouse and touch systems to reduce duplicated logic and ensure compatibility.",
+      ],
+    },
+    {
+      patchTitle: "Performance & Internal Updates",
+      patchPoints: [
+        "Reduced layout thrashing during hover and distortion calculations.",
+        "Optimized SVG filter initialization to prevent redundant DOM creation.",
+        "Improved memoization paths for renderLayers to reduce unnecessary re-renders.",
+        "Refined pointer event strategy for smoother animations under heavy CPU load.",
+        "General code cleanup and internal restructuring for better maintainability.",
+      ],
+    },
+  ],
+};
+
 export const defaultFilters = {
   blur: 4,
   distortion: 40,
   flexibility: 0,
   borderColor: "#ffffff",
   borderSize: 1,
-  borderRadius: 20,
+  borderRadius: 30,
   borderOpacity: 0.4,
   backgroundColor: "#000000ff",
-  backgroundOpacity: 0.2,
+  backgroundOpacity: 0,
   innerLightColor: "#ffffff",
   innerLightSpread: 1,
   innerLightBlur: 10,
@@ -105,9 +161,9 @@ export const defaultFilters = {
 
 export const tabLabels = [
   "Core Filters",
-  "Borders",
-  "Background",
+  "Border Filters",
+  "Background Filters",
   "Inner Light",
   "Outer Light",
-  "Extras",
+  "Extras Filters",
 ];

@@ -22,3 +22,8 @@ export type GlassFilterSettings = {
   saturation: number;
   brightness: number;
 };
+
+export type ProfileDetails = {
+  username: string;
+  role: string;
+};

@@ -1,6 +1,7 @@
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router";
 import "./style.scss";
+import "./assets/font.scss";
 import "./assets/color.scss";
 import "./assets/constants.scss";
 
