@@ -21,6 +21,7 @@ export const ExtraFilters: React.FunctionComponent<ExtraFiltersProps> = ({
         type="range"
         min={0.8}
         distortion={0}
+        avoidSvgCreation
         max={1.2}
         step={0.01}
         value={filters.onHoverScale}

@@ -20,6 +20,7 @@ export const CoreFeatures: React.FunctionComponent<CoreFeaturesProps> = ({
         min={0}
         max={100}
         distortion={0}
+        avoidSvgCreation
         backgroundColor="white"
         value={filters.blur}
         onChange={(e) => updateFilterState("blur", +e.target.value)}

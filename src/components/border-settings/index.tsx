@@ -4,7 +4,10 @@ import { GlassFilterSettings } from "../../models/demo-card.model";
 
 type BorderFiltersProps = {
   filters: GlassFilterSettings;
-  updateFilterState: (key: keyof GlassFilterSettings, value: number | string) => void;
+  updateFilterState: (
+    key: keyof GlassFilterSettings,
+    value: number | string
+  ) => void;
 };
 
 export const BorderFilters: React.FunctionComponent<BorderFiltersProps> = ({
@@ -16,6 +19,7 @@ export const BorderFilters: React.FunctionComponent<BorderFiltersProps> = ({
       <GlassInput
         label="Border Radius"
         distortion={0}
+        avoidSvgCreation
         type="range"
         min={0}
         max={180}
@@ -26,6 +30,7 @@ export const BorderFilters: React.FunctionComponent<BorderFiltersProps> = ({
         label="Border Size"
         type="range"
         distortion={0}
+        avoidSvgCreation
         min={0}
         max={10}
         value={filters.borderSize}
@@ -36,6 +41,7 @@ export const BorderFilters: React.FunctionComponent<BorderFiltersProps> = ({
         type="range"
         min={0}
         distortion={0}
+        avoidSvgCreation
         max={1}
         step={0.05}
         value={filters.borderOpacity}

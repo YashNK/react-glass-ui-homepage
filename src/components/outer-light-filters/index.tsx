@@ -18,6 +18,7 @@ export const OuterLightFilters: React.FunctionComponent<
       <GlassInput
         label="Outer Light Spread"
         distortion={0}
+        avoidSvgCreation
         type="range"
         min={0}
         max={50}
@@ -27,6 +28,7 @@ export const OuterLightFilters: React.FunctionComponent<
       <GlassInput
         label="Outer Light Blur"
         distortion={0}
+        avoidSvgCreation
         type="range"
         min={0}
         max={300}
@@ -39,6 +41,7 @@ export const OuterLightFilters: React.FunctionComponent<
         min={0}
         max={1}
         distortion={0}
+        avoidSvgCreation
         step={0.05}
         value={filters.outerLightOpacity}
         onChange={(e) =>

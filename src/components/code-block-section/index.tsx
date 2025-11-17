@@ -144,6 +144,8 @@ export const CodeBlockSection: React.FunctionComponent<
           <GlassCard
             backgroundOpacity={0.1}
             borderRadius={20}
+            distortion={0}
+            avoidSvgCreation
             blur={8}
             backgroundColor="var(--black)"
             className="w-100"
@@ -156,6 +158,8 @@ export const CodeBlockSection: React.FunctionComponent<
           ""
         )}
         <GlassCard
+          distortion={0}
+          avoidSvgCreation
           backgroundOpacity={0.1}
           borderRadius={20}
           blur={8}

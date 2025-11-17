@@ -15,6 +15,7 @@ export const InnerLightFilters: React.FunctionComponent<
       <GlassInput
         label="Inner Light Spread"
         distortion={0}
+        avoidSvgCreation
         type="range"
         min={0}
         max={50}
@@ -28,6 +29,7 @@ export const InnerLightFilters: React.FunctionComponent<
         max={300}
         value={filters.innerLightBlur}
         distortion={0}
+        avoidSvgCreation
         onChange={(e) => updateFilterState("innerLightBlur", +e.target.value)}
       />
       <GlassInput
@@ -38,6 +40,7 @@ export const InnerLightFilters: React.FunctionComponent<
         step={0.05}
         value={filters.innerLightOpacity}
         distortion={0}
+        avoidSvgCreation
         onChange={(e) =>
           updateFilterState("innerLightOpacity", +e.target.value)
         }

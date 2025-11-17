@@ -19,6 +19,7 @@ export const BackgroundFilters: React.FunctionComponent<
         label="Background Opacity"
         type="range"
         distortion={0}
+        avoidSvgCreation
         min={0}
         max={1}
         step={0.1}

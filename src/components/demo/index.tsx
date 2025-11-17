@@ -59,6 +59,7 @@ export const Demo: React.FunctionComponent = () => {
         <div className="demo_card_container flex_1_1_10 w-100">
           <GlassCard
             distortion={50}
+            avoidSvgCreation
             className="demo_card_desc"
             backgroundOpacity={0.2}
             borderRadius={20}
@@ -97,6 +98,7 @@ export const Demo: React.FunctionComponent = () => {
           </div>
           <GlassInput
             distortion={0}
+            avoidSvgCreation
             step={0.01}
             onChange={(e) => setBackgroundOpacity(+e.target.value)}
             value={backgroundOpacity}
@@ -109,6 +111,7 @@ export const Demo: React.FunctionComponent = () => {
           <GlassCard
             blur={5}
             distortion={0}
+            avoidSvgCreation
             className="demo_card_desc warning font_12"
             contentClassName="d-flex"
             backgroundOpacity={0.1}
@@ -126,6 +129,7 @@ export const Demo: React.FunctionComponent = () => {
           <GlassCard
             blur={5}
             distortion={0}
+            avoidSvgCreation
             className="demo_card_desc warning w-100"
             contentClassName="d-flex font_12"
             backgroundOpacity={0.1}
@@ -139,28 +143,6 @@ export const Demo: React.FunctionComponent = () => {
               performance.
             </div>
           </GlassCard>
-          {/* <GlassCard
-            blur={5}
-            distortion={0}
-            className="demo_card_desc h-100 w-100"
-            contentClassName="d-flex"
-            backgroundOpacity={0.1}
-            borderRadius={20}
-            backgroundColor="#d642cc"
-          >
-            <div>
-              <img className="logo_image mr-2" src={Logo} />
-            </div>
-            <div>
-              React Glass UI - {PatchNotesData.releaseVersion}
-              <div>
-                A customizable React component library for creating elegant
-                glassmorphism interfaces. It provides flexible, interactive UI
-                elements, such as cards, buttons, and inputs, with effects
-                including blur, saturation, distortion, light glow, and hover.
-              </div>
-            </div>
-          </GlassCard> */}
         </div>
         <div className="demo_options_container w-100 flex_1_1_10 h-100 d-flex flex-column">
           <GlassCard
